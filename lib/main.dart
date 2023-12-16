@@ -1,17 +1,23 @@
+// ignore_for_file: library_private_types_in_public_api
+
 import 'package:flutter/material.dart';
 
-void main() => runApp(MyApp());
+void main() => runApp(const MyApp());
 
 class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
@@ -36,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Calculateur de Frais de Déplacement'),
+        title: const Text('Frais Kilométrique'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -46,17 +52,17 @@ class _MyHomePageState extends State<MyHomePage> {
             TextField(
               controller: puissanceController,
               keyboardType: TextInputType.number,
-              decoration:
-                  InputDecoration(labelText: 'Puissance du véhicule (en CV)'),
+              decoration: const InputDecoration(
+                  labelText: 'Puissance du véhicule (en CV)'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 calculerFraisDeplacement();
               },
-              child: Text('Calculer'),
+              child: const Text('Calculer'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text('Frais de déplacement: $fraisDeplacement €'),
           ],
         ),
