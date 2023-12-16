@@ -8,6 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: MyHomePage(),
     );
   }
@@ -22,16 +23,19 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   TextEditingController puissanceController = TextEditingController();
-  double fraisDeplacement = 0.0;
+  TextEditingController kilometreController = TextEditingController();
+  double fraisDeplacement = 0.00;
 
   void calculerFraisDeplacement() {
     double puissance = double.tryParse(puissanceController.text) ?? 0.0;
+    double kilometre = double.tryParse(kilometreController.text) ?? 0.0;
 
     // Ajoutez ici la logique de calcul basée sur le barème URSSAf
     // Par exemple, utilisez une formule ou une table de correspondance.
 
     setState(() {
       fraisDeplacement = puissance *
+          kilometre *
           0.1; // Exemple de calcul simple, à ajuster selon le barème URSSAf.
     });
   }
@@ -52,6 +56,12 @@ class _MyHomePageState extends State<MyHomePage> {
               keyboardType: TextInputType.number,
               decoration: const InputDecoration(
                   labelText: 'Puissance du véhicule (en CV)'),
+            ),
+            TextField(
+              controller: kilometreController,
+              keyboardType: TextInputType.number,
+              decoration:
+                  const InputDecoration(labelText: 'Distance parcourue (km)'),
             ),
             const SizedBox(height: 20),
             ElevatedButton(
